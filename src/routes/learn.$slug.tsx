@@ -59,7 +59,7 @@ function LessonPage() {
       </header>
 
       <div className="space-y-5">
-        {lesson.content.map((s) => (
+        {lesson.content.map((s: { heading: string; body: string }) => (
           <GlassCard key={s.heading}>
             <h2 className="text-lg font-semibold">{s.heading}</h2>
             <p className="mt-2 text-[15px] leading-relaxed text-foreground/90">{s.body}</p>
