@@ -55,9 +55,9 @@ function CyclePage() {
           <a
             key={p.key}
             href={`#${p.key}`}
-            className="rounded-full border border-input px-4 py-1.5 text-sm hover:bg-accent"
+            className="inline-flex items-center gap-2 rounded-full border border-input px-4 py-1.5 text-sm hover:bg-accent"
           >
-            {p.emoji} {p.name}
+            <PhaseIcon phaseKey={p.key} size={14} /> {p.name}
           </a>
         ))}
       </div>
@@ -70,8 +70,8 @@ function CyclePage() {
                 <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   Phase {idx + 1} • Days {p.dayRange[0]}–{p.dayRange[1]}
                 </div>
-                <h2 className="mt-1 text-3xl font-semibold">
-                  <span className="mr-2">{p.emoji}</span>
+                <h2 className="mt-1 flex items-center gap-2 text-3xl font-semibold">
+                  <PhaseIcon phaseKey={p.key} size={28} />
                   {p.name}
                 </h2>
                 <p className="mt-2 text-muted-foreground max-w-2xl">{p.tagline}</p>
