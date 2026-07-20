@@ -91,10 +91,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "An educational period tracker for students. Understand your body with science-backed lessons and gentle tracking.",
+          "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed lessons and gentle tracking.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Luna — Learn your cycle" },
+      { name: "twitter:description", content: "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed lessons and gentle tracking." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/23744f78-d467-4411-a542-9f314a79e275/id-preview-45a7cb9d--d120b767-702e-4b26-a44f-12b8f54c4163.lovable.app-1784535850617.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/23744f78-d467-4411-a542-9f314a79e275/id-preview-45a7cb9d--d120b767-702e-4b26-a44f-12b8f54c4163.lovable.app-1784535850617.png" },
     ],
     links: [
       {
