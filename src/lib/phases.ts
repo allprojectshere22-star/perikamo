@@ -151,6 +151,20 @@ export const PHASES: Phase[] = [
     exercise: ["Pilates", "Long walks", "Restorative yoga"],
     funFact:
       "PMS affects up to 75% of menstruators — you are absolutely not alone in feeling it.",
+    dailyInsights: [
+      "The corpus luteum — the empty follicle from ovulation — is now a temporary hormone factory.",
+      "Progesterone is called the 'calming hormone' but its withdrawal is what fuels PMS.",
+      "Basal body temperature stays elevated — a natural sign the luteal phase has begun.",
+      "Serotonin dips as estrogen falls, which is why mood swings and cravings kick in.",
+      "The gut slows down under progesterone's influence — hello, bloating and constipation.",
+      "Breasts can feel tender because milk ducts temporarily expand in preparation for pregnancy.",
+      "Sleep can fragment now; melatonin production is subtly disrupted by hormone shifts.",
+      "Cravings for carbs are your brain asking for tryptophan to make more serotonin.",
+      "Skin produces more sebum in late luteal — the culprit behind hormonal breakouts.",
+      "If no pregnancy, the corpus luteum dissolves in ~10–12 days, triggering your next period.",
+      "This phase is always ~14 days — it's the follicular phase that varies cycle to cycle.",
+      "Deep breathing (4-in, 6-out) activates the vagus nerve and eases PMS irritability.",
+    ],
   },
 ];
 
