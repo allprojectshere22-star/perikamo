@@ -177,3 +177,11 @@ export function phaseForDay(cycleDay: number, cycleLength = 28): Phase {
   }
   return PHASES[PHASES.length - 1];
 }
+
+/** Deterministic day-of-year index — same insight all day, new one tomorrow. */
+export function dailyInsightFor(phase: Phase, date: Date = new Date()): string {
+  const start = new Date(date.getFullYear(), 0, 0);
+  const diff = date.getTime() - start.getTime();
+  const dayOfYear = Math.floor(diff / 86_400_000);
+  return phase.dailyInsights[dayOfYear % phase.dailyInsights.length];
+}
