@@ -79,6 +79,17 @@ function CalendarPage() {
     return stripTime(ov).getTime() === target || stripTime(ov2).getTime() === target;
   };
 
+  // Compute the phase for any date, based on cycle position from most recent period start
+  const lastStart = getLastPeriodStart(data);
+  const phaseKeyFor = (d: Date): PhaseKey | null => {
+    if (!lastStart) return null;
+    const cl = data.cycleLength || 28;
+    const diff = Math.floor((stripTime(d).getTime() - stripTime(lastStart).getTime()) / 86400000);
+    if (diff < 0) return null;
+    const cycleDay = (diff % cl) + 1;
+    return phaseForDay(cycleDay, cl).key;
+  };
+
   const today = stripTime(new Date()).getTime();
 
   return (
