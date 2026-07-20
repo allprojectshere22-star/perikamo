@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LogRouteImport } from './routes/log'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CycleRouteImport } from './routes/cycle'
 import { Route as CalendarRouteImport } from './routes/calendar'
@@ -16,6 +17,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 
+const LogRoute = LogRouteImport.update({
+  id: '/log',
+  path: '/log',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
+  '/log': typeof LogRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/learn/': typeof LearnIndexRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
+  '/log': typeof LogRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/learn': typeof LearnIndexRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
+  '/log': typeof LogRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/learn/': typeof LearnIndexRoute
 }
@@ -79,16 +88,25 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/cycle'
     | '/dashboard'
+    | '/log'
     | '/learn/$slug'
     | '/learn/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/calendar' | '/cycle' | '/dashboard' | '/learn/$slug' | '/learn'
+  to:
+    | '/'
+    | '/calendar'
+    | '/cycle'
+    | '/dashboard'
+    | '/log'
+    | '/learn/$slug'
+    | '/learn'
   id:
     | '__root__'
     | '/'
     | '/calendar'
     | '/cycle'
     | '/dashboard'
+    | '/log'
     | '/learn/$slug'
     | '/learn/'
   fileRoutesById: FileRoutesById
@@ -98,12 +116,20 @@ export interface RootRouteChildren {
   CalendarRoute: typeof CalendarRoute
   CycleRoute: typeof CycleRoute
   DashboardRoute: typeof DashboardRoute
+  LogRoute: typeof LogRoute
   LearnSlugRoute: typeof LearnSlugRoute
   LearnIndexRoute: typeof LearnIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/log': {
+      id: '/log'
+      path: '/log'
+      fullPath: '/log'
+      preLoaderRoute: typeof LogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -154,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalendarRoute: CalendarRoute,
   CycleRoute: CycleRoute,
   DashboardRoute: DashboardRoute,
+  LogRoute: LogRoute,
   LearnSlugRoute: LearnSlugRoute,
   LearnIndexRoute: LearnIndexRoute,
 }
