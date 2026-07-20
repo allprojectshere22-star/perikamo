@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as CycleRouteImport } from './routes/cycle'
+import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
@@ -17,6 +18,11 @@ import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 const CycleRoute = CycleRouteImport.update({
   id: '/cycle',
   path: '/cycle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,12 +43,14 @@ const LearnSlugRoute = LearnSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/learn/': typeof LearnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/learn': typeof LearnIndexRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/learn/': typeof LearnIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cycle' | '/learn/$slug' | '/learn/'
+  fullPaths: '/' | '/calendar' | '/cycle' | '/learn/$slug' | '/learn/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cycle' | '/learn/$slug' | '/learn'
-  id: '__root__' | '/' | '/cycle' | '/learn/$slug' | '/learn/'
+  to: '/' | '/calendar' | '/cycle' | '/learn/$slug' | '/learn'
+  id: '__root__' | '/' | '/calendar' | '/cycle' | '/learn/$slug' | '/learn/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CalendarRoute: typeof CalendarRoute
   CycleRoute: typeof CycleRoute
   LearnSlugRoute: typeof LearnSlugRoute
   LearnIndexRoute: typeof LearnIndexRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/cycle'
       fullPath: '/cycle'
       preLoaderRoute: typeof CycleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CalendarRoute: CalendarRoute,
   CycleRoute: CycleRoute,
   LearnSlugRoute: LearnSlugRoute,
   LearnIndexRoute: LearnIndexRoute,
