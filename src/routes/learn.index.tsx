@@ -5,7 +5,7 @@ import { useCycleData } from "@/hooks/use-cycle-data";
 import { Check, ArrowRight } from "lucide-react";
 import { useMemo, useState } from "react";
 
-export const Route = createFileRoute("/learn")({
+export const Route = createFileRoute("/learn/")({
   head: () => ({
     meta: [
       { title: "Learn — Luna" },
