@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { useCycleData, getNextPeriodDate } from "@/hooks/use-cycle-data";
-import { phaseForDay } from "@/lib/phases";
+import { useCycleData, getNextPeriodDate, getLastPeriodStart } from "@/hooks/use-cycle-data";
+import { phaseForDay, type PhaseKey } from "@/lib/phases";
 import { GlassCard, SectionTitle, Chip } from "@/components/ui-kit";
+import { PhaseIcon } from "@/components/phase-icon";
 
 export const Route = createFileRoute("/calendar")({
   head: () => ({
