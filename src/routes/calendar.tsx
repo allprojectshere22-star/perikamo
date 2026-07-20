@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { useCycleData, getNextPeriodDate } from "@/hooks/use-cycle-data";
-import { phaseForDay } from "@/lib/phases";
+import { useCycleData, getNextPeriodDate, getLastPeriodStart } from "@/hooks/use-cycle-data";
+import { phaseForDay, type PhaseKey } from "@/lib/phases";
 import { GlassCard, SectionTitle, Chip } from "@/components/ui-kit";
+import { PhaseIcon } from "@/components/phase-icon";
 
 export const Route = createFileRoute("/calendar")({
   head: () => ({
@@ -78,6 +79,17 @@ function CalendarPage() {
     return stripTime(ov).getTime() === target || stripTime(ov2).getTime() === target;
   };
 
+  // Compute the phase for any date, based on cycle position from most recent period start
+  const lastStart = getLastPeriodStart(data);
+  const phaseKeyFor = (d: Date): PhaseKey | null => {
+    if (!lastStart) return null;
+    const cl = data.cycleLength || 28;
+    const diff = Math.floor((stripTime(d).getTime() - stripTime(lastStart).getTime()) / 86400000);
+    if (diff < 0) return null;
+    const cycleDay = (diff % cl) + 1;
+    return phaseForDay(cycleDay, cl).key;
+  };
+
   const today = stripTime(new Date()).getTime();
 
   return (
@@ -134,6 +146,19 @@ function CalendarPage() {
             const predicted = !period && isPredicted(d);
             const ovulation = !period && !predicted && isOvulation(d);
             const isToday = stripTime(d).getTime() === today;
+            const phaseKey = !period && !predicted && !ovulation ? phaseKeyFor(d) : null;
+
+            const phaseBg =
+              phaseKey === "follicular"
+                ? "bg-primary/15 border border-primary/25"
+                : phaseKey === "luteal"
+                ? "bg-[color:var(--gold)]/10 border border-[color:var(--gold)]/20"
+                : phaseKey === "menstrual"
+                ? "bg-destructive/15 border border-destructive/25"
+                : phaseKey === "ovulation"
+                ? "bg-[color:var(--gold)]/15 border border-[color:var(--gold)]/30"
+                : "bg-secondary/40";
+
             return (
               <div
                 key={i}
@@ -141,7 +166,7 @@ function CalendarPage() {
                   ${period ? "bg-destructive/80 text-white" : ""}
                   ${predicted ? "border-2 border-dashed border-destructive/50 text-foreground/80" : ""}
                   ${ovulation ? "bg-[color:var(--gold)]/25 text-[color:var(--gold)] border border-[color:var(--gold)]/40" : ""}
-                  ${!period && !predicted && !ovulation ? "bg-secondary/40" : ""}
+                  ${!period && !predicted && !ovulation ? phaseBg : ""}
                   ${isToday ? "ring-2 ring-primary" : ""}
                 `}
               >
@@ -151,10 +176,13 @@ function CalendarPage() {
           })}
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-3 text-xs">
+        <div className="mt-5 grid grid-cols-2 sm:flex sm:flex-wrap gap-3 text-xs">
           <Legend swatch="bg-destructive/80" label="Period" />
           <Legend swatch="border-2 border-dashed border-destructive/50" label="Predicted" />
-          <Legend swatch="bg-[color:var(--gold)]/40" label="Ovulation" />
+          <Legend swatch="bg-[color:var(--gold)]/40 border border-[color:var(--gold)]/40" label="Ovulation" />
+          <Legend swatch="bg-destructive/15 border border-destructive/25" label="Menstrual" />
+          <Legend swatch="bg-primary/15 border border-primary/25" label="Follicular" />
+          <Legend swatch="bg-[color:var(--gold)]/10 border border-[color:var(--gold)]/20" label="Luteal" />
           <Legend swatch="ring-2 ring-primary" label="Today" />
         </div>
       </GlassCard>
@@ -167,7 +195,6 @@ function CalendarPage() {
               .slice(-8)
               .reverse()
               .map((p, i) => {
-                const day = phaseForDay(1, data.cycleLength);
                 return (
                   <li key={p.start + i} className="flex items-center justify-between text-sm">
                     <span>
@@ -186,7 +213,10 @@ function CalendarPage() {
                         </>
                       )}
                     </span>
-                    <Chip>{day.emoji} logged</Chip>
+                    <Chip>
+                      <PhaseIcon phaseKey="menstrual" size={12} className="mr-1 inline" />
+                      logged
+                    </Chip>
                   </li>
                 );
               })}

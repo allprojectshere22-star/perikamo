@@ -1,4 +1,5 @@
 import type { Phase } from "@/lib/phases";
+import { PhaseIcon } from "@/components/phase-icon";
 
 interface Props {
   cycleDay: number | null;
@@ -49,8 +50,9 @@ export function CycleRing({ cycleDay, cycleLength, phase, size = 260 }: Props) {
             <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Cycle day</div>
             <div className="font-display text-6xl font-semibold">{cycleDay}</div>
             {phase && (
-              <div className="mt-1 text-sm text-muted-foreground">
-                {phase.emoji} {phase.name}
+              <div className="mt-1 flex items-center justify-center gap-1.5 text-sm text-muted-foreground">
+                <PhaseIcon phaseKey={phase.key} size={16} />
+                {phase.name}
               </div>
             )}
           </>

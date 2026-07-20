@@ -10,6 +10,8 @@ import { LESSONS, DAILY_TIPS, DID_YOU_KNOW } from "@/lib/lessons";
 import { CycleRing } from "@/components/cycle-ring";
 import { GlassCard, SectionTitle, Chip } from "@/components/ui-kit";
 import { ArrowRight, BookOpen, Droplet, Sparkles } from "lucide-react";
+import { PhaseIcon } from "@/components/phase-icon";
+import { LessonIcon } from "@/components/lesson-icon";
 
 export const Route = createFileRoute("/")({
   component: TodayPage,
@@ -59,7 +61,12 @@ function TodayPage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            {phase && <Chip tone="blue">{phase.emoji} {phase.name}</Chip>}
+            {phase && (
+              <Chip tone="blue">
+                <PhaseIcon phaseKey={phase.key} size={14} className="mr-1.5 inline" />
+                {phase.name}
+              </Chip>
+            )}
             {daysUntil !== null && (
               <Chip tone="gold">
                 Next period in {daysUntil} {daysUntil === 1 ? "day" : "days"}
@@ -126,7 +133,7 @@ function TodayPage() {
         <Link to="/learn/$slug" params={{ slug: lesson.slug }}>
           <GlassCard className="group hover:border-primary/40 transition-colors cursor-pointer">
             <div className="flex items-start gap-4">
-              <div className="text-4xl">{lesson.emoji}</div>
+              <LessonIcon lesson={lesson} size={32} />
               <div className="flex-1">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <span>{lesson.category}</span>
@@ -177,7 +184,7 @@ function TodayPage() {
               className="group"
             >
               <GlassCard className="h-full transition-transform group-hover:-translate-y-1">
-                <div className="text-3xl">{p.emoji}</div>
+                <PhaseIcon phaseKey={p.key} size={28} />
                 <div className="mt-3 font-semibold">{p.name}</div>
                 <div className="text-xs text-muted-foreground mt-1">
                   Days {p.dayRange[0]}–{p.dayRange[1]}

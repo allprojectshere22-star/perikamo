@@ -3,6 +3,7 @@ import { LESSONS, CATEGORIES } from "@/lib/lessons";
 import { GlassCard, SectionTitle, Chip } from "@/components/ui-kit";
 import { useCycleData } from "@/hooks/use-cycle-data";
 import { Check, ArrowRight } from "lucide-react";
+import { LessonIcon } from "@/components/lesson-icon";
 import { useMemo, useState } from "react";
 
 export const Route = createFileRoute("/learn/")({
@@ -90,7 +91,7 @@ function LearnPage() {
             <Link key={l.slug} to="/learn/$slug" params={{ slug: l.slug }}>
               <GlassCard className="h-full group hover:border-primary/40 transition-colors">
                 <div className="flex items-start gap-4">
-                  <div className="text-3xl">{l.emoji}</div>
+                  <LessonIcon lesson={l} size={28} />
                   <div className="flex-1">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <span>{l.category}</span>

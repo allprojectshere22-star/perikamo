@@ -3,6 +3,7 @@ import { LESSONS } from "@/lib/lessons";
 import { GlassCard, Chip } from "@/components/ui-kit";
 import { useCycleData } from "@/hooks/use-cycle-data";
 import { ArrowLeft, Check, Sparkles } from "lucide-react";
+import { LessonIcon } from "@/components/lesson-icon";
 
 export const Route = createFileRoute("/learn/$slug")({
   loader: ({ params }) => {
@@ -51,9 +52,9 @@ function LessonPage() {
           <span>•</span>
           <span>{lesson.readMinutes} min read</span>
         </div>
-        <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
-          <span className="mr-3">{lesson.emoji}</span>
-          {lesson.title}
+        <h1 className="flex items-center gap-3 text-4xl md:text-5xl font-semibold leading-tight">
+          <LessonIcon lesson={lesson} size={40} />
+          <span>{lesson.title}</span>
         </h1>
         <p className="text-lg text-muted-foreground">{lesson.summary}</p>
       </header>
