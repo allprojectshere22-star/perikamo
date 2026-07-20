@@ -83,6 +83,17 @@ export const PHASES: Phase[] = [
     exercise: ["Cardio (running, cycling)", "Dance classes", "Strength training"],
     funFact:
       "You are born with ~1–2 million egg cells. By puberty, only ~300,000 remain — and only ~400 will ever mature.",
+    dailyInsights: [
+      "FSH (follicle-stimulating hormone) is currently coaxing 15–20 tiny follicles to start growing.",
+      "Only one follicle will win the race and become dominant — the rest quietly dissolve.",
+      "Rising estrogen sharpens verbal memory and word recall, according to fMRI studies.",
+      "Skin looks clearer now because estrogen boosts collagen production and hydration.",
+      "Your pain tolerance is measurably higher during this phase than in the luteal one.",
+      "Motor coordination peaks — a good time to learn dance steps or a new instrument.",
+      "The uterine lining thickens by about 1 mm every two days during this window.",
+      "Insulin sensitivity is at its best, so carbs are used efficiently for energy.",
+      "Confidence in trying new things is linked to rising estrogen's effect on dopamine.",
+    ],
   },
   {
     key: "ovulation",
