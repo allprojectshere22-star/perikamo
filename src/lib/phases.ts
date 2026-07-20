@@ -116,6 +116,15 @@ export const PHASES: Phase[] = [
     exercise: ["High-intensity workouts", "Team sports", "Heavy lifting"],
     funFact:
       "The released egg is only about 0.1 mm wide — but it's the largest human cell you can see with the naked eye.",
+    dailyInsights: [
+      "The LH surge that triggers ovulation lasts only 24–36 hours — a brief hormonal fireworks show.",
+      "Cervical mucus turns clear and stretchy — like raw egg white — to help sperm travel.",
+      "Body temperature rises by about 0.3–0.5°C right after ovulation and stays up for ~14 days.",
+      "Some people feel a brief one-sided twinge called mittelschmerz — German for 'middle pain'.",
+      "The egg lives just 12–24 hours after release; sperm can wait up to 5 days for it.",
+      "Sense of smell peaks now — studies show sharper detection of subtle scents.",
+      "Ovaries usually alternate sides each cycle, but not always — it's more random than people think.",
+    ],
   },
   {
     key: "luteal",
