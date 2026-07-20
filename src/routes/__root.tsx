@@ -197,6 +197,7 @@ function RootComponent() {
           </ul>
         </nav>
       </div>
+      <Toaster />
     </QueryClientProvider>
   );
 }
