@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as LogRouteImport } from './routes/log'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CycleRouteImport } from './routes/cycle'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LogRoute = LogRouteImport.update({
   id: '/log',
   path: '/log',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
   '/log': typeof LogRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/learn/': typeof LearnIndexRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
   '/log': typeof LogRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/learn': typeof LearnIndexRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
   '/log': typeof LogRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/learn/': typeof LearnIndexRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/cycle'
     | '/dashboard'
     | '/log'
+    | '/sitemap.xml'
     | '/learn/$slug'
     | '/learn/'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/cycle'
     | '/dashboard'
     | '/log'
+    | '/sitemap.xml'
     | '/learn/$slug'
     | '/learn'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/cycle'
     | '/dashboard'
     | '/log'
+    | '/sitemap.xml'
     | '/learn/$slug'
     | '/learn/'
   fileRoutesById: FileRoutesById
@@ -117,12 +129,20 @@ export interface RootRouteChildren {
   CycleRoute: typeof CycleRoute
   DashboardRoute: typeof DashboardRoute
   LogRoute: typeof LogRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   LearnSlugRoute: typeof LearnSlugRoute
   LearnIndexRoute: typeof LearnIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/log': {
       id: '/log'
       path: '/log'
@@ -181,9 +201,20 @@ const rootRouteChildren: RootRouteChildren = {
   CycleRoute: CycleRoute,
   DashboardRoute: DashboardRoute,
   LogRoute: LogRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   LearnSlugRoute: LearnSlugRoute,
   LearnIndexRoute: LearnIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
