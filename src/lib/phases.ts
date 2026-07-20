@@ -16,6 +16,7 @@ export interface Phase {
   nutrition: string[];
   exercise: string[];
   funFact: string;
+  dailyInsights: string[];
 }
 
 export const PHASES: Phase[] = [
