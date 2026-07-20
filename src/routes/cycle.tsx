@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PHASES, dailyInsightFor } from "@/lib/phases";
 import { GlassCard, SectionTitle, Chip } from "@/components/ui-kit";
+import { PhaseIcon } from "@/components/phase-icon";
 import {
   Accordion,
   AccordionContent,
