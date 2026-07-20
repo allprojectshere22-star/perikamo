@@ -45,6 +45,18 @@ export const PHASES: Phase[] = [
     exercise: ["Gentle yoga", "Walking", "Stretching — skip heavy training"],
     funFact:
       "The average person loses only 30–40 mL of blood per period — about 2–3 tablespoons.",
+    dailyInsights: [
+      "Prostaglandins — hormone-like compounds — trigger the uterine muscle contractions you feel as cramps.",
+      "Period blood isn't just blood: it's a mix of uterine tissue, cervical mucus, and vaginal secretions.",
+      "Body temperature is at its lowest point of the entire cycle right now — often by 0.3–0.5°C.",
+      "Iron loss during your period is why energy dips; a single cup of lentils replaces most of it.",
+      "The uterus is only about the size of a pear, yet it can contract with real force during shedding.",
+      "Endorphins from a short walk can ease cramps as effectively as a low-dose painkiller for some.",
+      "By day 5, estrogen has already started climbing again — your body is quietly rebuilding.",
+      "Sleep quality tends to improve slightly by the end of your period as inflammation settles.",
+      "Cravings for chocolate spike now partly because cocoa contains magnesium, which relaxes muscles.",
+      "The cervix sits slightly lower and softer during menstruation — a subtle physical shift.",
+    ],
   },
   {
     key: "follicular",
