@@ -119,6 +119,16 @@ export function useCycleData() {
     [update]
   );
 
+  const deletePeriod = useCallback(
+    (startISO: string) => {
+      update((prev) => {
+        const periods = prev.periods.filter((p) => p.start !== startISO);
+        return { ...prev, periods };
+      });
+    },
+    [update]
+  );
+
   const toggleLesson = useCallback(
     (slug: string) => {
       update((prev) => ({
