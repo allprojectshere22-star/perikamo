@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 import { Home, BookOpen, CalendarDays, LineChart, Sparkles } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
+import { SplashScreen } from "@/components/splash-screen";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -106,7 +107,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap",
       },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -142,6 +144,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <SplashScreen />
       <div className="min-h-screen hero-bg pb-28 md:pb-0 md:pt-20">
         {/* Desktop top nav */}
         <header className="hidden md:block fixed top-0 inset-x-0 z-40 glass">
