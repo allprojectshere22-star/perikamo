@@ -147,6 +147,7 @@ export function useCycleData() {
     update,
     logPeriodStart,
     setPeriodEnd,
+    deletePeriod,
     toggleLesson,
   };
 }
