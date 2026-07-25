@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 import { Home, BookOpen, CalendarDays, LineChart, Sparkles } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
+import { SplashScreen } from "@/components/splash-screen";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -80,14 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#0D0D0D" },
-      { title: "Luna — Learn your cycle" },
+      { title: "Perikoma — Learn your cycle" },
       {
         name: "description",
         content:
           "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed lessons and gentle tracking.",
       },
-      { name: "author", content: "Luna" },
-      { property: "og:title", content: "Luna — Learn your cycle" },
+      { name: "author", content: "Perikoma" },
+      { property: "og:title", content: "Perikoma — Learn your cycle" },
       {
         property: "og:description",
         content:
@@ -95,7 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Luna — Learn your cycle" },
+      { name: "twitter:title", content: "Perikoma — Learn your cycle" },
       { name: "twitter:description", content: "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed lessons and gentle tracking." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/23744f78-d467-4411-a542-9f314a79e275/id-preview-45a7cb9d--d120b767-702e-4b26-a44f-12b8f54c4163.lovable.app-1784535850617.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/23744f78-d467-4411-a542-9f314a79e275/id-preview-45a7cb9d--d120b767-702e-4b26-a44f-12b8f54c4163.lovable.app-1784535850617.png" },
@@ -106,7 +107,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap",
       },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -142,13 +144,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <SplashScreen />
       <div className="min-h-screen hero-bg pb-28 md:pb-0 md:pt-20">
         {/* Desktop top nav */}
         <header className="hidden md:block fixed top-0 inset-x-0 z-40 glass">
           <nav className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2">
-              <LunaMark />
-              <span className="font-display font-semibold tracking-tight">Luna</span>
+              <PerikomaMark />
+              <span className="font-display font-semibold tracking-tight">Perikoma</span>
             </Link>
             <div className="flex items-center gap-1">
               {NAV.map((n) => (
@@ -206,7 +209,7 @@ function RootComponent() {
   );
 }
 
-function LunaMark() {
+function PerikomaMark() {
   return (
     <div className="relative size-8 rounded-xl overflow-hidden">
       <div

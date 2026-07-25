@@ -10,7 +10,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/log")({
   head: () => ({
     meta: [
-      { title: "Log period — Luna" },
+      { title: "Log period — Perikoma" },
       { name: "description", content: "Log the start or end of your period." },
       { name: "robots", content: "noindex" },
     ],
@@ -34,7 +34,7 @@ function LogPage() {
       <SectionTitle
         eyebrow="Track"
         title="Log your period"
-        subtitle="Luna learns from each entry to make better predictions."
+        subtitle="Perikoma learns from each entry to make better predictions."
       />
 
       {last && (
@@ -101,7 +101,7 @@ function LogPage() {
       <GlassCard className="space-y-4">
         <h3 className="font-semibold">Your averages</h3>
         <p className="text-sm text-muted-foreground">
-          If you know your typical cycle, set it here. Luna will still adapt as you log.
+          If you know your typical cycle, set it here. Perikoma will still adapt as you log.
         </p>
         <label className="block text-sm">
           <span className="text-muted-foreground">Average cycle length: {cycleLength} days</span>

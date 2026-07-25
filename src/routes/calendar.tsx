@@ -8,13 +8,13 @@ import { PhaseIcon } from "@/components/phase-icon";
 export const Route = createFileRoute("/calendar")({
   head: () => ({
     meta: [
-      { title: "Calendar — Luna" },
+      { title: "Calendar — Perikoma" },
       {
         name: "description",
         content:
           "See past periods, predicted periods, ovulation, and your current phase on a calendar timeline.",
       },
-      { property: "og:title", content: "Calendar — Luna" },
+      { property: "og:title", content: "Calendar — Perikoma" },
       {
         property: "og:description",
         content: "Cycle calendar with periods, ovulation, and phase overview.",
