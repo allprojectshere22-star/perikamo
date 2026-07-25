@@ -2,7 +2,10 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useCycleData, getLastPeriodStart } from "@/hooks/use-cycle-data";
 import { GlassCard, SectionTitle } from "@/components/ui-kit";
+import { PhaseIcon } from "@/components/phase-icon";
+import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
+
 
 export const Route = createFileRoute("/log")({
   head: () => ({
