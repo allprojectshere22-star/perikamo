@@ -19,7 +19,7 @@ export const Route = createFileRoute("/log")({
 });
 
 function LogPage() {
-  const { data, hydrated, logPeriodStart, setPeriodEnd, update } = useCycleData();
+  const { data, hydrated, logPeriodStart, setPeriodEnd, deletePeriod, update } = useCycleData();
   const navigate = useNavigate();
   const today = new Date().toISOString().slice(0, 10);
   const [startDate, setStartDate] = useState(today);
