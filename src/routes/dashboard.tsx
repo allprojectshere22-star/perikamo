@@ -13,13 +13,13 @@ import { Flame, BookOpen, Activity, Circle } from "lucide-react";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Progress — Luna" },
+      { title: "Progress — Perikoma" },
       {
         name: "description",
         content:
           "Your cycle regularity, learning streak, lessons completed, and phase overview at a glance.",
       },
-      { property: "og:title", content: "Progress — Luna" },
+      { property: "og:title", content: "Progress — Perikoma" },
       {
         property: "og:description",
         content: "Track your learning streak and cycle regularity.",
@@ -92,7 +92,7 @@ function DashboardPage() {
             )}
           </div>
           <p className="mt-3 text-sm text-muted-foreground">
-            Regular cycles fall between 21 and 35 days. Luna's prediction adapts each
+            Regular cycles fall between 21 and 35 days. Perikoma's prediction adapts each
             time you log a new period.
           </p>
           <div className="mt-4 flex gap-2 text-xs">
@@ -126,7 +126,7 @@ function DashboardPage() {
       </div>
 
       <p className="text-xs text-muted-foreground text-center">
-        Luna is an educational companion. It does not diagnose medical conditions.
+        Perikoma is an educational companion. It does not diagnose medical conditions.
       </p>
     </main>
   );

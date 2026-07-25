@@ -52,12 +52,12 @@ function TodayPage() {
               Today
             </div>
             <h1 className="mt-2 font-display text-4xl md:text-5xl font-semibold leading-tight">
-              {phase ? phase.tagline : "Welcome to Luna."}
+              {phase ? phase.tagline : "Welcome to Perikoma."}
             </h1>
             <p className="mt-3 text-muted-foreground max-w-lg">
               {phase
                 ? phase.body
-                : "Log your last period start date so Luna can teach you what's happening in your body — and predict what's next."}
+                : "Log your last period start date so Perikoma can teach you what's happening in your body — and predict what's next."}
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -199,7 +199,7 @@ function TodayPage() {
       </section>
 
       <p className="text-xs text-muted-foreground text-center pt-4">
-        Luna provides educational information only and does not diagnose medical conditions.
+        Perikoma provides educational information only and does not diagnose medical conditions.
         If something feels off, talk to a healthcare provider.
       </p>
     </main>

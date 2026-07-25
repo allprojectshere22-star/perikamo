@@ -13,13 +13,13 @@ import { useEffect, useState } from "react";
 export const Route = createFileRoute("/cycle")({
   head: () => ({
     meta: [
-      { title: "Cycle Journey — Luna" },
+      { title: "Cycle Journey — Perikoma" },
       {
         name: "description",
         content:
           "Explore the four phases of the menstrual cycle: menstrual, follicular, ovulation, and luteal. A new insight every day.",
       },
-      { property: "og:title", content: "Cycle Journey — Luna" },
+      { property: "og:title", content: "Cycle Journey — Perikoma" },
       {
         property: "og:description",
         content:

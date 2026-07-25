@@ -14,12 +14,12 @@ export const Route = createFileRoute("/learn/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.lesson.title} — Luna` },
+          { title: `${loaderData.lesson.title} — Perikoma` },
           { name: "description", content: loaderData.lesson.summary },
-          { property: "og:title", content: `${loaderData.lesson.title} — Luna` },
+          { property: "og:title", content: `${loaderData.lesson.title} — Perikoma` },
           { property: "og:description", content: loaderData.lesson.summary },
         ]
-      : [{ title: "Lesson — Luna" }, { name: "robots", content: "noindex" }],
+      : [{ title: "Lesson — Perikoma" }, { name: "robots", content: "noindex" }],
   }),
   component: LessonPage,
   notFoundComponent: () => (

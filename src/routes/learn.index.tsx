@@ -9,13 +9,13 @@ import { useMemo, useState } from "react";
 export const Route = createFileRoute("/learn/")({
   head: () => ({
     meta: [
-      { title: "Learn — Luna" },
+      { title: "Learn — Perikoma" },
       {
         name: "description",
         content:
           "A beginner-friendly library of lessons on the menstrual cycle: hormones, ovulation, PMS, hygiene, nutrition, exercise, and myths vs facts.",
       },
-      { property: "og:title", content: "Learn — Luna" },
+      { property: "og:title", content: "Learn — Perikoma" },
       {
         property: "og:description",
         content: "Short science-backed lessons on the menstrual cycle for students.",
