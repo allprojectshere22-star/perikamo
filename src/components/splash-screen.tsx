@@ -18,21 +18,15 @@ export function SplashScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[100] flex items-center justify-center bg-[#0D0D0D] transition-opacity duration-500 ${
         fading ? "opacity-0" : "opacity-100"
       }`}
     >
-      <div className="relative size-40 overflow-hidden rounded-3xl ring-1 ring-border shadow-2xl">
-        <img
-          src={splash.url}
-          alt="Perikoma"
-          className="size-full object-cover"
-        />
-      </div>
-      <p className="mt-6 font-display text-2xl font-semibold tracking-tight text-foreground">
-        Perikoma
-      </p>
-      <p className="mt-1 text-sm text-muted-foreground">Learn your cycle</p>
+      <img
+        src={splash.url}
+        alt="Perikoma"
+        className="max-h-[70vh] w-auto max-w-[80vw] object-contain"
+      />
     </div>
   );
 }
