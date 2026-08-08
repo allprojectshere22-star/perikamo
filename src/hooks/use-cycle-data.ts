@@ -13,9 +13,12 @@ export interface CycleData {
   lastOpenedDate?: string;
   streak: number;
   onboarded: boolean;
+  autoBackup: boolean;
+  lastBackupAt?: string;
 }
 
 const KEY = "flow.cycle.v1";
+export const BACKUP_KEY = "perikoma.backup.v1";
 
 const DEFAULT: CycleData = {
   periods: [],
@@ -24,6 +27,7 @@ const DEFAULT: CycleData = {
   completedLessons: [],
   streak: 0,
   onboarded: false,
+  autoBackup: true,
 };
 
 function read(): CycleData {
@@ -37,10 +41,27 @@ function read(): CycleData {
   }
 }
 
+export function backupPayload(data: CycleData) {
+  return {
+    app: "Perikoma",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    data,
+  };
+}
+
 function write(data: CycleData) {
   if (typeof window === "undefined") return;
   localStorage.setItem(KEY, JSON.stringify(data));
+  if (data.autoBackup) {
+    try {
+      localStorage.setItem(BACKUP_KEY, JSON.stringify(backupPayload(data)));
+    } catch {
+      /* ignore quota errors */
+    }
+  }
 }
+
 
 export function useCycleData() {
   const [data, setData] = useState<CycleData>(DEFAULT);
