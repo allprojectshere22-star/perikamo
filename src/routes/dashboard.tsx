@@ -8,6 +8,7 @@ import {
 import { phaseForDay } from "@/lib/phases";
 import { GlassCard, SectionTitle, Chip } from "@/components/ui-kit";
 import { Activity, Circle, CalendarDays, Droplet } from "lucide-react";
+import { HistoryCard, BackupCard } from "@/components/history-backup";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -97,6 +98,10 @@ function DashboardPage() {
           <Chip>Periods logged: {data.periods.length}</Chip>
         </div>
       </GlassCard>
+
+      <HistoryCard />
+
+      <BackupCard />
 
       <p className="text-xs text-muted-foreground text-center">
         Perikoma is an educational companion. It does not diagnose medical conditions.

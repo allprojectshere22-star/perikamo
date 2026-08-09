@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { Home, CalendarDays, LineChart, Sparkles } from "lucide-react";
+import { Home, CalendarDays, LineChart, Sparkles, Route as RouteIcon } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import { SplashScreen } from "@/components/splash-screen";
 
@@ -133,7 +133,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 const NAV = [
   { to: "/", label: "Today", icon: Home },
-  { to: "/cycle", label: "Cycle", icon: Sparkles },
+  { to: "/cycle", label: "Log", icon: Sparkles },
+  { to: "/journey", label: "Journey", icon: RouteIcon },
   { to: "/calendar", label: "Calendar", icon: CalendarDays },
   { to: "/dashboard", label: "Progress", icon: LineChart },
 ] as const;

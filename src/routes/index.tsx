@@ -93,7 +93,7 @@ function TodayPage() {
               </div>
             </GlassCard>
 
-            <Link to="/cycle" className="group">
+            <Link to="/journey" className="group">
               <GlassCard className="h-full py-4 transition-colors group-hover:border-primary/40">
                 <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
                   Explore
@@ -174,7 +174,7 @@ function TodayPage() {
         />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {PHASES.map((p) => (
-            <Link key={p.key} to="/cycle" hash={p.key} className="group">
+            <Link key={p.key} to="/journey" hash={p.key} className="group">
               <GlassCard className="h-full transition-transform group-hover:-translate-y-1">
                 <PhaseIcon phaseKey={p.key} size={28} />
                 <div className="mt-3 font-semibold">{p.name}</div>

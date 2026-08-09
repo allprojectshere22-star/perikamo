@@ -150,9 +150,9 @@ function CalendarPage() {
 
             const phaseBg =
               phaseKey === "follicular"
-                ? "bg-primary/15 border border-primary/25"
+                ? "bg-[color:var(--follicular)]/20 border border-[color:var(--follicular)]/35"
                 : phaseKey === "luteal"
-                ? "bg-[color:var(--gold)]/10 border border-[color:var(--gold)]/20"
+                ? "bg-[color:var(--luteal)]/20 border border-[color:var(--luteal)]/35"
                 : phaseKey === "menstrual"
                 ? "bg-destructive/15 border border-destructive/25"
                 : phaseKey === "ovulation"
@@ -181,8 +181,8 @@ function CalendarPage() {
           <Legend swatch="border-2 border-dashed border-destructive/50" label="Predicted" />
           <Legend swatch="bg-[color:var(--gold)]/40 border border-[color:var(--gold)]/40" label="Ovulation" />
           <Legend swatch="bg-destructive/15 border border-destructive/25" label="Menstrual" />
-          <Legend swatch="bg-primary/15 border border-primary/25" label="Follicular" />
-          <Legend swatch="bg-[color:var(--gold)]/10 border border-[color:var(--gold)]/20" label="Luteal" />
+          <Legend swatch="bg-[color:var(--follicular)]/25 border border-[color:var(--follicular)]/40" label="Follicular" />
+          <Legend swatch="bg-[color:var(--luteal)]/25 border border-[color:var(--luteal)]/40" label="Luteal" />
           <Legend swatch="ring-2 ring-primary" label="Today" />
         </div>
       </GlassCard>
