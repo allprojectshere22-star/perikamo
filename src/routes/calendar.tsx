@@ -106,7 +106,7 @@ function CalendarPage() {
             Log a period start date to see your calendar predictions.
           </p>
           <Link
-            to="/log"
+            to="/cycle"
             className="inline-block mt-4 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
           >
             Log period

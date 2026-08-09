@@ -6,14 +6,28 @@ import {
   getDaysUntilNext,
 } from "@/hooks/use-cycle-data";
 import { phaseForDay, PHASES } from "@/lib/phases";
-import { LESSONS, DAILY_TIPS, DID_YOU_KNOW } from "@/lib/lessons";
+import { DAILY_TIPS, DID_YOU_KNOW } from "@/lib/tips";
 import { CycleRing } from "@/components/cycle-ring";
 import { GlassCard, SectionTitle, Chip } from "@/components/ui-kit";
-import { ArrowRight, BookOpen, Droplet, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Sparkles } from "lucide-react";
 import { PhaseIcon } from "@/components/phase-icon";
-import { LessonIcon } from "@/components/lesson-icon";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Today — Perikoma" },
+      {
+        name: "description",
+        content:
+          "See your cycle day, current phase, and what to expect today — a calm, science-backed period tracker.",
+      },
+      { property: "og:title", content: "Today — Perikoma" },
+      {
+        property: "og:description",
+        content: "Your cycle day, current phase, and what to expect today.",
+      },
+    ],
+  }),
   component: TodayPage,
 });
 
@@ -30,12 +44,6 @@ function TodayPage() {
   const daysUntil = getDaysUntilNext(data);
   const tip = pickDaily(DAILY_TIPS);
   const fact = pickDaily(DID_YOU_KNOW);
-
-  // Rotate through lessons, one per day
-  const lesson = useMemo(() => {
-    const seed = Math.floor(Date.now() / 86400000);
-    return LESSONS[seed % LESSONS.length];
-  }, []);
 
   if (!hydrated) return <div className="min-h-screen" />;
 
@@ -57,35 +65,47 @@ function TodayPage() {
             <p className="mt-3 text-muted-foreground max-w-lg">
               {phase
                 ? phase.body
-                : "Log your last period start date so Perikoma can teach you what's happening in your body — and predict what's next."}
+                : "Log your last period start date on the Cycle page so Perikoma can show what's happening in your body — and predict what's next."}
             </p>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {phase && (
-              <Chip tone="blue">
-                <PhaseIcon phaseKey={phase.key} size={14} className="mr-1.5 inline" />
-                {phase.name}
-              </Chip>
-            )}
-            {daysUntil !== null && (
-              <Chip tone="gold">
-                Next period in {daysUntil} {daysUntil === 1 ? "day" : "days"}
-              </Chip>
-            )}
-            <Chip>Cycle length ~{data.cycleLength}d</Chip>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              to="/log"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 shadow-[var(--shadow-elegant)]"
-            >
-              <Droplet className="size-4" /> Log period
-            </Link>
-            <Link
-              to="/cycle"
-              className="inline-flex items-center gap-2 rounded-full border border-input px-5 py-2.5 text-sm font-medium hover:bg-accent"
-            >
-              Explore cycle journey <ArrowRight className="size-4" />
+
+          {phase && (
+            <Chip tone="blue">
+              <PhaseIcon phaseKey={phase.key} size={14} className="mr-1.5 inline" />
+              {phase.name}
+            </Chip>
+          )}
+
+          {/* Cycle length + explore — new stacked layout */}
+          <div className="grid gap-3 sm:grid-cols-2">
+            <GlassCard className="py-4">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                Cycle length
+              </div>
+              <div className="mt-1 flex items-baseline gap-1">
+                <span className="font-display text-3xl font-semibold">{data.cycleLength}</span>
+                <span className="text-sm text-muted-foreground">days</span>
+              </div>
+              <div className="mt-1 text-xs text-[color:var(--gold)]">
+                {daysUntil !== null
+                  ? `Next period in ${daysUntil} ${daysUntil === 1 ? "day" : "days"}`
+                  : "No prediction yet"}
+              </div>
+            </GlassCard>
+
+            <Link to="/cycle" className="group">
+              <GlassCard className="h-full py-4 transition-colors group-hover:border-primary/40">
+                <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                  Explore
+                </div>
+                <div className="mt-1 flex items-center gap-2 font-display text-xl font-semibold">
+                  Cycle journey
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                </div>
+                <div className="mt-1 text-xs text-muted-foreground">
+                  Phases, insights, and period logging
+                </div>
+              </GlassCard>
             </Link>
           </div>
         </div>
@@ -123,36 +143,13 @@ function TodayPage() {
         </section>
       )}
 
-      {/* Today's lesson */}
-      <section className="space-y-4">
-        <SectionTitle
-          eyebrow="Today's lesson"
-          title="A 2-minute read"
-          subtitle="One short lesson each day builds a real understanding of your body."
-        />
-        <Link to="/learn/$slug" params={{ slug: lesson.slug }}>
-          <GlassCard className="group hover:border-primary/40 transition-colors cursor-pointer">
-            <div className="flex items-start gap-4">
-              <LessonIcon lesson={lesson} size={32} />
-              <div className="flex-1">
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <span>{lesson.category}</span>
-                  <span>•</span>
-                  <span>{lesson.readMinutes} min read</span>
-                </div>
-                <h3 className="mt-1 text-xl font-semibold">{lesson.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{lesson.summary}</p>
-              </div>
-              <ArrowRight className="size-5 mt-2 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all" />
-            </div>
-          </GlassCard>
-        </Link>
-      </section>
-
       {/* Did you know + Tip */}
       <section className="grid gap-4 md:grid-cols-2">
         <GlassCard className="relative overflow-hidden">
-          <div className="absolute -right-8 -top-8 size-40 rounded-full opacity-20" style={{ background: "var(--gradient-gold)" }} />
+          <div
+            className="absolute -right-8 -top-8 size-40 rounded-full opacity-20"
+            style={{ background: "var(--gradient-gold)" }}
+          />
           <div className="relative">
             <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[color:var(--gold)]">
               <Sparkles className="size-4" /> Did you know?
@@ -168,30 +165,22 @@ function TodayPage() {
         </GlassCard>
       </section>
 
-      {/* Phase preview */}
+      {/* Phase names */}
       <section className="space-y-4">
         <SectionTitle
           eyebrow="Four phases"
           title="Your cycle is a journey"
-          subtitle="Tap any phase to learn what's happening inside."
+          subtitle="Tap any phase to open it on the Cycle page."
         />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {PHASES.map((p) => (
-            <Link
-              key={p.key}
-              to="/cycle"
-              hash={p.key}
-              className="group"
-            >
+            <Link key={p.key} to="/cycle" hash={p.key} className="group">
               <GlassCard className="h-full transition-transform group-hover:-translate-y-1">
                 <PhaseIcon phaseKey={p.key} size={28} />
                 <div className="mt-3 font-semibold">{p.name}</div>
                 <div className="text-xs text-muted-foreground mt-1">
                   Days {p.dayRange[0]}–{p.dayRange[1]}
                 </div>
-                <p className="mt-3 text-sm text-muted-foreground line-clamp-2">
-                  {p.tagline}
-                </p>
               </GlassCard>
             </Link>
           ))}

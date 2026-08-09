@@ -10,22 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as LogRouteImport } from './routes/log'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CycleRouteImport } from './routes/cycle'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as LearnIndexRouteImport } from './routes/learn.index'
-import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LogRoute = LogRouteImport.update({
-  id: '/log',
-  path: '/log',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -48,36 +40,20 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LearnIndexRoute = LearnIndexRouteImport.update({
-  id: '/learn/',
-  path: '/learn/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LearnSlugRoute = LearnSlugRouteImport.update({
-  id: '/learn/$slug',
-  path: '/learn/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
-  '/log': typeof LogRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/learn/$slug': typeof LearnSlugRoute
-  '/learn/': typeof LearnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
-  '/log': typeof LogRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/learn/$slug': typeof LearnSlugRoute
-  '/learn': typeof LearnIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -85,42 +61,14 @@ export interface FileRoutesById {
   '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
-  '/log': typeof LogRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/learn/$slug': typeof LearnSlugRoute
-  '/learn/': typeof LearnIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/calendar'
-    | '/cycle'
-    | '/dashboard'
-    | '/log'
-    | '/sitemap.xml'
-    | '/learn/$slug'
-    | '/learn/'
+  fullPaths: '/' | '/calendar' | '/cycle' | '/dashboard' | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/calendar'
-    | '/cycle'
-    | '/dashboard'
-    | '/log'
-    | '/sitemap.xml'
-    | '/learn/$slug'
-    | '/learn'
-  id:
-    | '__root__'
-    | '/'
-    | '/calendar'
-    | '/cycle'
-    | '/dashboard'
-    | '/log'
-    | '/sitemap.xml'
-    | '/learn/$slug'
-    | '/learn/'
+  to: '/' | '/calendar' | '/cycle' | '/dashboard' | '/sitemap.xml'
+  id: '__root__' | '/' | '/calendar' | '/cycle' | '/dashboard' | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -128,10 +76,7 @@ export interface RootRouteChildren {
   CalendarRoute: typeof CalendarRoute
   CycleRoute: typeof CycleRoute
   DashboardRoute: typeof DashboardRoute
-  LogRoute: typeof LogRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  LearnSlugRoute: typeof LearnSlugRoute
-  LearnIndexRoute: typeof LearnIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,13 +86,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/log': {
-      id: '/log'
-      path: '/log'
-      fullPath: '/log'
-      preLoaderRoute: typeof LogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -178,20 +116,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/learn/': {
-      id: '/learn/'
-      path: '/learn'
-      fullPath: '/learn/'
-      preLoaderRoute: typeof LearnIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/learn/$slug': {
-      id: '/learn/$slug'
-      path: '/learn/$slug'
-      fullPath: '/learn/$slug'
-      preLoaderRoute: typeof LearnSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -200,10 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalendarRoute: CalendarRoute,
   CycleRoute: CycleRoute,
   DashboardRoute: DashboardRoute,
-  LogRoute: LogRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  LearnSlugRoute: LearnSlugRoute,
-  LearnIndexRoute: LearnIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

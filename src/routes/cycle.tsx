@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PHASES, dailyInsightFor } from "@/lib/phases";
 import { GlassCard, SectionTitle, Chip } from "@/components/ui-kit";
 import { PhaseIcon } from "@/components/phase-icon";
+import { LogPeriod } from "@/components/log-period";
 import {
   Accordion,
   AccordionContent,
@@ -17,13 +18,13 @@ export const Route = createFileRoute("/cycle")({
       {
         name: "description",
         content:
-          "Explore the four phases of the menstrual cycle: menstrual, follicular, ovulation, and luteal. A new insight every day.",
+          "Log your period and explore the four phases of the menstrual cycle: menstrual, follicular, ovulation, and luteal.",
       },
       { property: "og:title", content: "Cycle Journey — Perikoma" },
       {
         property: "og:description",
         content:
-          "The four phases of your cycle, explained clearly. Body, hormones, mood, energy, nutrition, and movement.",
+          "Log your period and explore the four phases of your cycle: body, hormones, mood, energy, nutrition, and movement.",
       },
     ],
   }),
@@ -45,22 +46,18 @@ function CyclePage() {
   return (
     <main className="mx-auto max-w-4xl px-5 pt-8 md:pt-14 space-y-8">
       <SectionTitle
+        eyebrow="Track"
+        title="Log your period"
+        subtitle="Two taps is all it takes — Perikoma learns from each entry."
+      />
+
+      <LogPeriod />
+
+      <SectionTitle
         eyebrow="Cycle journey"
         title="Four phases, one continuous rhythm"
         subtitle="A new insight for every phase, every day. Tap a section to expand."
       />
-
-      <div className="flex flex-wrap gap-2">
-        {PHASES.map((p) => (
-          <a
-            key={p.key}
-            href={`#${p.key}`}
-            className="inline-flex items-center gap-2 rounded-full border border-input px-4 py-1.5 text-sm hover:bg-accent"
-          >
-            <PhaseIcon phaseKey={p.key} size={14} /> {p.name}
-          </a>
-        ))}
-      </div>
 
       <div className="space-y-6">
         {PHASES.map((p, idx) => (
