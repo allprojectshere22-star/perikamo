@@ -54,6 +54,8 @@
   --accent: oklch(0.28 0.05 265);
   --accent-foreground: oklch(0.97 0.005 260);
   --gold: oklch(0.78 0.14 85); /* #D4AF37 */
+  --follicular: oklch(0.72 0.18 350); /* pink */
+  --luteal: oklch(0.62 0.2 300); /* purple */
   --gold-foreground: oklch(0.15 0.01 260);
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
