@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CycleRouteImport } from './routes/cycle'
 import { Route as CalendarRouteImport } from './routes/calendar'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JourneyRoute = JourneyRouteImport.update({
+  id: '/journey',
+  path: '/journey',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
+  '/journey': typeof JourneyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
+  '/journey': typeof JourneyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,28 @@ export interface FileRoutesById {
   '/calendar': typeof CalendarRoute
   '/cycle': typeof CycleRoute
   '/dashboard': typeof DashboardRoute
+  '/journey': typeof JourneyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/calendar' | '/cycle' | '/dashboard' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/calendar'
+    | '/cycle'
+    | '/dashboard'
+    | '/journey'
+    | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/calendar' | '/cycle' | '/dashboard' | '/sitemap.xml'
-  id: '__root__' | '/' | '/calendar' | '/cycle' | '/dashboard' | '/sitemap.xml'
+  to: '/' | '/calendar' | '/cycle' | '/dashboard' | '/journey' | '/sitemap.xml'
+  id:
+    | '__root__'
+    | '/'
+    | '/calendar'
+    | '/cycle'
+    | '/dashboard'
+    | '/journey'
+    | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +98,7 @@ export interface RootRouteChildren {
   CalendarRoute: typeof CalendarRoute
   CycleRoute: typeof CycleRoute
   DashboardRoute: typeof DashboardRoute
+  JourneyRoute: typeof JourneyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -86,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journey': {
+      id: '/journey'
+      path: '/journey'
+      fullPath: '/journey'
+      preLoaderRoute: typeof JourneyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -124,8 +154,19 @@ const rootRouteChildren: RootRouteChildren = {
   CalendarRoute: CalendarRoute,
   CycleRoute: CycleRoute,
   DashboardRoute: DashboardRoute,
+  JourneyRoute: JourneyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
