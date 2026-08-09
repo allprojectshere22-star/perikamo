@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { Home, BookOpen, CalendarDays, LineChart, Sparkles } from "lucide-react";
+import { Home, CalendarDays, LineChart, Sparkles } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import { SplashScreen } from "@/components/splash-screen";
 
@@ -81,23 +81,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#0D0D0D" },
-      { title: "Perikoma — Learn your cycle" },
+      { title: "Perikoma — Understand your cycle" },
       {
         name: "description",
         content:
-          "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed lessons and gentle tracking.",
+          "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed phase insights and gentle tracking.",
       },
       { name: "author", content: "Perikoma" },
-      { property: "og:title", content: "Perikoma — Learn your cycle" },
+      { property: "og:title", content: "Perikoma — Understand your cycle" },
       {
         property: "og:description",
         content:
-          "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed lessons and gentle tracking.",
+          "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed phase insights and gentle tracking.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Perikoma — Learn your cycle" },
-      { name: "twitter:description", content: "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed lessons and gentle tracking." },
+      { name: "twitter:title", content: "Perikoma — Understand your cycle" },
+      { name: "twitter:description", content: "An educational period tracker for students. Understand what's happening in your body, and why — with science-backed phase insights and gentle tracking." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/23744f78-d467-4411-a542-9f314a79e275/id-preview-45a7cb9d--d120b767-702e-4b26-a44f-12b8f54c4163.lovable.app-1784535850617.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/23744f78-d467-4411-a542-9f314a79e275/id-preview-45a7cb9d--d120b767-702e-4b26-a44f-12b8f54c4163.lovable.app-1784535850617.png" },
     ],
@@ -134,7 +134,6 @@ function RootShell({ children }: { children: ReactNode }) {
 const NAV = [
   { to: "/", label: "Today", icon: Home },
   { to: "/cycle", label: "Cycle", icon: Sparkles },
-  { to: "/learn", label: "Learn", icon: BookOpen },
   { to: "/calendar", label: "Calendar", icon: CalendarDays },
   { to: "/dashboard", label: "Progress", icon: LineChart },
 ] as const;
@@ -179,7 +178,7 @@ function RootComponent() {
 
         {/* Mobile bottom nav */}
         <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 glass border-t">
-          <ul className="grid grid-cols-5">
+          <ul className="grid grid-cols-4">
             {NAV.map((n) => {
               const Icon = n.icon;
               return (
