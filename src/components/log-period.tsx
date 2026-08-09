@@ -1,22 +1,11 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useCycleData, getLastPeriodStart, backupPayload, type CycleData } from "@/hooks/use-cycle-data";
-import { GlassCard, SectionTitle, Chip } from "@/components/ui-kit";
+import { GlassCard, Chip } from "@/components/ui-kit";
 import { PhaseIcon } from "@/components/phase-icon";
 import { Switch } from "@/components/ui/switch";
 import { Trash2, Download, Upload, CalendarPlus, CalendarCheck, Settings2, History } from "lucide-react";
 import { toast } from "sonner";
-
-export const Route = createFileRoute("/log")({
-  head: () => ({
-    meta: [
-      { title: "Log period — Perikoma" },
-      { name: "description", content: "Log the start or end of your period." },
-      { name: "robots", content: "noindex" },
-    ],
-  }),
-  component: LogPage,
-});
 
 const iso = (d: Date) => d.toISOString().slice(0, 10);
 const fmt = (d: Date) =>
@@ -45,7 +34,7 @@ function QuickDate({
   );
 }
 
-function LogPage() {
+export function LogPeriod() {
   const { data, hydrated, logPeriodStart, setPeriodEnd, deletePeriod, update } = useCycleData();
   const navigate = useNavigate();
   const today = iso(new Date());
@@ -110,12 +99,7 @@ function LogPage() {
   };
 
   return (
-    <main className="mx-auto max-w-2xl px-5 pt-8 md:pt-14 space-y-6">
-      <SectionTitle
-        eyebrow="Track"
-        title="Log your period"
-        subtitle="Two taps is all it takes — Perikoma learns from each entry."
-      />
+    <section className="space-y-6">
 
       <GlassCard className="space-y-5">
         {/* Segmented control */}
@@ -310,12 +294,6 @@ function LogPage() {
           </ul>
         )}
       </GlassCard>
-
-      <div className="text-center">
-        <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">
-          Back to Today
-        </Link>
-      </div>
-    </main>
+    </section>
   );
 }
