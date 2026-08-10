@@ -22,11 +22,16 @@ export function SplashScreen() {
         fading ? "opacity-0" : "opacity-100"
       }`}
     >
-      <img
-        src={splash.url}
-        alt="Perikoma"
-        className="max-h-[70vh] w-auto max-w-[80vw] object-contain"
-      />
+      <div className="flex flex-col items-center gap-4">
+        <img
+          src={splash.url}
+          alt="Perikoma"
+          className="h-auto w-[40vw] max-w-[180px] rounded-2xl object-contain"
+        />
+        <span className="font-display text-lg font-semibold tracking-tight text-white/80">
+          Perikoma
+        </span>
+      </div>
     </div>
   );
 }
