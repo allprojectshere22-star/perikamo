@@ -178,8 +178,8 @@ function RootComponent() {
         <Outlet />
 
         {/* Mobile bottom nav */}
-        <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 glass border-t">
-          <ul className="grid grid-cols-4">
+        <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 glass border-t pb-[env(safe-area-inset-bottom)]">
+          <ul className="grid grid-cols-5">
             {NAV.map((n) => {
               const Icon = n.icon;
               return (

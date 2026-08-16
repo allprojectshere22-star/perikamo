@@ -26,9 +26,9 @@ export function SplashScreen() {
         <img
           src={splash.url}
           alt="Perikoma"
-          className="h-auto w-[40vw] max-w-[180px] rounded-2xl object-contain"
+          className="h-auto w-[28vw] max-w-[110px] rounded-full object-contain"
         />
-        <span className="font-display text-lg font-semibold tracking-tight text-white/80">
+        <span className="font-display text-base font-semibold tracking-tight text-white/70">
           Perikoma
         </span>
       </div>
