@@ -193,9 +193,9 @@ function RootComponent() {
                     inactiveProps={{
                       className: "text-muted-foreground",
                     }}
-                    className="flex flex-col items-center gap-1 py-3 text-xs"
+                    className="flex flex-col items-center gap-1 py-2.5 text-[10px] leading-none"
                   >
-                    <Icon className="size-5" />
+                    <Icon className="size-5 shrink-0" />
                     {n.label}
                   </Link>
                 </li>
