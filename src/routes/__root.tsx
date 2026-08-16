@@ -178,8 +178,8 @@ function RootComponent() {
         <Outlet />
 
         {/* Mobile bottom nav */}
-        <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 glass border-t">
-          <ul className="grid grid-cols-4">
+        <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 glass border-t pb-[env(safe-area-inset-bottom)]">
+          <ul className="grid grid-cols-5">
             {NAV.map((n) => {
               const Icon = n.icon;
               return (
@@ -193,9 +193,9 @@ function RootComponent() {
                     inactiveProps={{
                       className: "text-muted-foreground",
                     }}
-                    className="flex flex-col items-center gap-1 py-3 text-xs"
+                    className="flex flex-col items-center gap-1 py-2.5 text-[10px] leading-none"
                   >
-                    <Icon className="size-5" />
+                    <Icon className="size-5 shrink-0" />
                     {n.label}
                   </Link>
                 </li>
