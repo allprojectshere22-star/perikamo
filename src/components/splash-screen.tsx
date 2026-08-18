@@ -6,8 +6,8 @@ export function SplashScreen() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setFading(true), 1600);
-    const t2 = setTimeout(() => setVisible(false), 2200);
+    const t1 = setTimeout(() => setFading(true), 5000);
+    const t2 = setTimeout(() => setVisible(false), 5600);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -25,7 +25,7 @@ export function SplashScreen() {
       <img
         src={splash.url}
         alt="Perikoma"
-        className="max-h-[70vh] w-[80vw] max-w-[420px] rounded-2xl object-contain"
+        className="max-h-[40vh] w-[52vw] max-w-[240px] rounded-2xl object-contain"
       />
     </div>
   );
