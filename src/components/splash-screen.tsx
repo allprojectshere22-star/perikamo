@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import splash from "@/assets/perikoma-splash.jpg.asset.json";
+import splash from "@/assets/perikoma-splash-new.png.asset.json";
 
 export function SplashScreen() {
   const [visible, setVisible] = useState(true);
@@ -22,16 +22,11 @@ export function SplashScreen() {
         fading ? "opacity-0" : "opacity-100"
       }`}
     >
-      <div className="flex flex-col items-center gap-4">
-        <img
-          src={splash.url}
-          alt="Perikoma"
-          className="h-auto w-[28vw] max-w-[110px] rounded-full object-contain"
-        />
-        <span className="font-display text-base font-semibold tracking-tight text-white/70">
-          Perikoma
-        </span>
-      </div>
+      <img
+        src={splash.url}
+        alt="Perikoma"
+        className="max-h-[70vh] w-[80vw] max-w-[420px] rounded-2xl object-contain"
+      />
     </div>
   );
 }
